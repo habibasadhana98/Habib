@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menemani Studio — Graphic Design, Videography & Photography (Solo, Indonesia)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        signature: ['"Caveat"', 'cursive'],
+                    },
+                    colors: {
+                        cream: '#F9F6F0',
+                        creamDark: '#F0ECE1',
+                        charcoal: '#181310',
+                        charcoalLight: '#261F1B',
+                        amberGold: '#F5A623',
+                        amberHover: '#E09212',
+                    },
+                    animation: {
+                        'spin-slow': 'spin 14s linear infinite',
+                        'marquee': 'marquee 25s linear infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-6px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F9F6F0;
+            color: #181310;
+            overflow-x: hidden;
+        }
+        .bg-editorial-grid {
+            background-size: 48px 48px;
+            background-image: 
+                linear-gradient(to right, rgba(24, 19, 16, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(24, 19, 16, 0.03) 1px, transparent 1px);
+        }
+        .service-card-active {
+            background-color: #181310;
+            color: #FFFFFF;
+            box-shadow: 0 20px 35px -10px rgba(24, 19, 16, 0.25);
+        }
+        .service-card-inactive {
+            background-color: #FFFFFF;
+            color: #181310;
+            box-shadow: 0 4px 15px -3px rgba(24, 19, 16, 0.04);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-editorial-grid antialiased selection:bg-amberGold selection:text-charcoal">
+
+    <header class="sticky top-4 z-40 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <nav class="bg-charcoal text-white rounded-full px-4 sm:px-6 py-3 flex items-center justify-between shadow-xl border border-white/10">
+            <a href="#home" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 rounded-full bg-amberGold flex items-center justify-center text-charcoal font-extrabold text-lg transition-transform group-hover:scale-105">
+                    M
+                </div>
+                <span class="font-bold text-lg tracking-tight">Menemani<span class="text-amberGold">.</span></span>
+            </a>
+
+            <ul class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-300">
+                <li><a href="#home" class="text-amberGold font-semibold transition">Home</a></li>
+                <li><a href="#services" class="hover:text-amberGold transition">Services</a></li>
+                <li><a href="#portfolio" class="hover:text-amberGold transition">Portfolio</a></li>
+                <li><a href="#about" class="hover:text-amberGold transition">About Me</a></li>
+                <li><a href="#socials" class="hover:text-amberGold transition">Behance & Sosmed</a></li>
+            </ul>
+
+            <div class="flex items-center gap-3">
+                <button onclick="openContactModal()" class="bg-white text-charcoal hover:bg-amberGold hover:text-charcoal font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full transition duration-300 shadow-sm">
+                    Let's Talk
+                </button>
+                <button id="mobileMenuBtn" aria-label="Toggle Menu" class="md:hidden w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-amberGold hover:text-charcoal transition">
+                    <i class="fa-solid fa-bars text-sm"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobileMenu" class="hidden md:hidden mt-2 bg-charcoal text-white rounded-3xl p-5 shadow-2xl border border-white/10">
+            <ul class="flex flex-col gap-3 text-sm font-medium">
+                <li><a href="#home" class="mobile-link block py-2 px-3 rounded-xl bg-white/5 text-amberGold">Home</a></li>
+                <li><a href="#services" class="mobile-link block py-2 px-3 rounded-xl hover:bg-white/5">Services</a></li>
+                <li><a href="#portfolio" class="mobile-link block py-2 px-3 rounded-xl hover:bg-white/5">Portfolio (Behance)</a></li>
+                <li><a href="#about" class="mobile-link block py-2 px-3 rounded-xl hover:bg-white/5">About & Apps</a></li>
+                <li><a href="#socials" class="mobile-link block py-2 px-3 rounded-xl hover:bg-white/5">Social Media</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="home" class="relative pt-10 pb-0 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto overflow-hidden">
+        <div class="text-center max-w-3xl mx-auto relative z-10">
+            <div class="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-sm border border-black/5 mb-4">
+                <span class="w-5 h-5 rounded-full bg-charcoal text-amberGold flex items-center justify-center text-xs">
+                    <i class="fa-solid fa-award"></i>
+                </span>
+                <span class="text-xs sm:text-sm font-semibold text-charcoal">Creative Visual Studio</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-charcoal leading-tight">
+                I’m <span class="text-amberGold relative inline-block">
+                    <span id="displayStudioName">Menemani Studio</span>
+                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-charcoal absolute -top-3 -right-6 sm:-right-8" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 1L14.5 9.5L23 12L14.5 14.5L12 23L9.5 14.5L1 12L9.5 9.5L12 1Z"/>
+                    </svg>
+                </span>
+            </h1>
+            <p class="mt-2.5 text-sm sm:text-base font-medium text-gray-600 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-location-dot text-amberGold"></i>
+                <span>Graphic Designer, Videographer & Photographer based in <strong id="displayLocation" class="text-charcoal">Solo, Indonesia</strong></span>
+            </p>
+        </div>
+
+        <div class="hidden lg:flex items-center justify-center absolute top-10 right-8 z-20">
+            <a href="#portfolio" class="relative w-28 h-28 flex items-center justify-center group cursor-pointer" title="Lihat Karya & Hire Kami">
+                <div class="w-full h-full rounded-full bg-charcoal text-white flex items-center justify-center shadow-lg border-4 border-dashed border-amberGold/40">
+                    <svg class="w-24 h-24 animate-spin-slow" viewBox="0 0 100 100">
+                        <defs>
+                            <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
+                        </defs>
+                        <text fill="#FFFFFF" font-size="9.5" font-weight="700" letter-spacing="2.2">
+                            <textPath href="#circlePath">• MENEMANI STUDIO • SOLO ID</textPath>
+                        </text>
+                    </svg>
+                </div>
+                <div class="absolute w-10 h-10 rounded-full bg-amberGold text-charcoal flex items-center justify-center shadow group-hover:scale-110 transition">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 items-center gap-8 relative">
+            <div class="lg:col-span-3 flex flex-col sm:flex-row lg:flex-col justify-between gap-6 order-2 lg:order-1 text-center sm:text-left">
+                <div class="bg-white/70 backdrop-blur-sm p-4 rounded-2xl border border-black/5 lg:bg-transparent lg:p-0 lg:border-0">
+                    <p class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">Follow Me On</p>
+                    <div class="flex items-center justify-center sm:justify-start gap-2.5">
+                        <a href="https://www.behance.net" target="_blank" rel="noopener noreferrer" aria-label="Behance" class="link-behance w-9 h-9 rounded-full bg-charcoal text-white hover:bg-amberGold hover:text-charcoal flex items-center justify-center transition shadow-sm">
+                            <i class="fa-brands fa-behance text-sm"></i>
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="link-instagram w-9 h-9 rounded-full bg-charcoal text-white hover:bg-amberGold hover:text-charcoal flex items-center justify-center transition shadow-sm">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="link-youtube w-9 h-9 rounded-full bg-charcoal text-white hover:bg-amberGold hover:text-charcoal flex items-center justify-center transition shadow-sm">
+                            <i class="fa-brands fa-youtube text-sm"></i>
+                        </a>
+                        <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="link-tiktok w-9 h-9 rounded-full bg-charcoal text-white hover:bg-amberGold hover:text-charcoal flex items-center justify-center transition shadow-sm">
+                            <i class="fa-brands fa-tiktok text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white/70 backdrop-blur-sm p-4 rounded-2xl border border-black/5 lg:bg-transparent lg:p-0 lg:border-0">
+                    <div class="flex items-center justify-center sm:justify-start -space-x-2.5 mb-2.5">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" onerror="this.src='https://placehold.co/100x100/F5A623/181310?text=C1'" alt="Client 1" class="w-9 h-9 rounded-full border-2 border-cream object-cover">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" onerror="this.src='https://placehold.co/100x100/181310/FFFFFF?text=C2'" alt="Client 2" class="w-9 h-9 rounded-full border-2 border-cream object-cover">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=100&q=80" onerror="this.src='https://placehold.co/100x100/F5A623/181310?text=C3'" alt="Client 3" class="w-9 h-9 rounded-full border-2 border-cream object-cover">
+                        <div class="w-9 h-9 rounded-full border-2 border-cream bg-amberGold text-charcoal font-bold text-xs flex items-center justify-center">
+                            99+
+                        </div>
+                    </div>
+                    <p class="text-sm font-extrabold text-charcoal">
+                        <span class="text-amberGold">150+ Projects</span> (4.9 of 5)
+                    </p>
+                    <p class="text-xs text-gray-500">Trusted by Brands & UMKM in Solo & Beyond</p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 relative flex flex-col items-center justify-end order-1 lg:order-2">
+                <div class="w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-creamDark border border-black/5 absolute bottom-4 -z-10 flex items-center justify-center overflow-hidden">
+                    <div class="w-full h-6 bg-cream/60 rotate-12 transform translate-y-6"></div>
+                </div>
+
+                <div class="relative z-10 w-64 sm:w-80 md:w-96 pt-2">
+                    <img 
+                        id="heroPortraitImg"
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
+                        onerror="this.src='https://placehold.co/600x700/181310/F5A623?text=Menemani+Studio'" 
+                        alt="Menemani Studio Creative Portrait" 
+                        class="w-full h-[340px] sm:h-[400px] object-cover object-top rounded-t-[140px] shadow-xl border-4 border-white"
+                    >
+                    
+                    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md p-1.5 rounded-full shadow-2xl border border-black/10 flex items-center gap-1 w-max z-20">
+                        <a href="#portfolio" class="bg-amberGold hover:bg-amberHover text-charcoal font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full flex items-center gap-2 transition">
+                            <span>Portfolio</span>
+                            <span class="w-5 h-5 rounded-full bg-charcoal text-white flex items-center justify-center text-[10px]">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </a>
+                        <button onclick="openContactModal()" class="bg-white hover:bg-creamDark text-charcoal font-bold text-xs sm:text-sm px-6 py-2.5 rounded-full border border-black/15 transition">
+                            Hire Me
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 flex flex-col justify-between gap-6 order-3 text-center lg:text-right">
+                <div class="bg-white/70 backdrop-blur-sm p-4 rounded-2xl border border-black/5 lg:bg-transparent lg:p-0 lg:border-0">
+                    <div class="text-amberGold text-3xl font-serif leading-none mb-1">“</div>
+                    <p id="displayHeroQuote" class="text-xs sm:text-sm font-medium text-gray-600 leading-relaxed">
+                        Menemani setiap langkah visual brand Anda melalui Desain Grafis, Fotografi, dan Videografi berkarakter!
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center lg:justify-end gap-2">
+                    <span class="px-3.5 py-1.5 rounded-full bg-charcoal text-white text-xs font-semibold shadow-sm">Graphic Design</span>
+                    <span class="px-3.5 py-1.5 rounded-full bg-amberGold text-charcoal text-xs font-bold shadow-sm">Videography</span>
+                    <span class="w-7 h-7 rounded-full bg-amberGold text-charcoal flex items-center justify-center text-xs font-bold shadow-sm">✦</span>
+                    <span class="px-3.5 py-1.5 rounded-full bg-charcoal text-white text-xs font-semibold shadow-sm">Photography</span>
+                    <span class="px-3.5 py-1.5 rounded-full bg-charcoal text-white text-xs font-semibold shadow-sm">Adobe Family</span>
+                    <span class="px-3.5 py-1.5 rounded-full bg-amberGold text-charcoal text-xs font-bold shadow-sm">Affinity & Canva</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="bg-charcoal text-white py-4 border-y-2 border-amberGold/30 overflow-hidden relative z-20 mt-10">
+        <div class="flex whitespace-nowrap animate-marquee items-center gap-8 text-sm sm:text-base font-bold tracking-wide">
+            <span>Graphic Design</span>
+            <span class="text-amberGold text-xl">✦</span>
+            <span>Videography</span>
+            <span class="text-amberGold text-xl">✦</span>
+            <span>Commercial Photography</span>
+            <span class="text-amberGold text-xl">✦</span>
+            <span>Adobe Creative Cloud</span>
+            <span class="text-amberGold text-xl">✦</span>
+            <span>Affinity Suite</span>
+            <span class="text-amberGold text-xl">✦</span>
+            <span>CapCut & Canva Pro</span>
+            <span class="text-amberGold text-xl">✦</span>
+            <span>Solo, Indonesia</span>
+            <span class="text-amberGold text-xl">✦</span>
+            <span>Graphic Design</span>
+            <span class="text-amberGold text-xl">✦</span>
+            <span>Videography</span>
+            <span class="text-amberGold text-xl">✦</span>
+            <span>Commercial Photography</span>
+            <span class="text-amberGold text-xl">✦</span>
+            <span>Adobe Creative Cloud</span>
+            <span class="text-amberGold text-xl">✦</span>
+            <span>Affinity Suite</span>
+            <span class="text-amberGold text-xl">✦</span>
+            <span>CapCut & Canva Pro</span>
+            <span class="text-amberGold text-xl">✦</span>
+        </div>
+    </div>
+
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+            <div>
+                <div class="inline-flex items-center gap-2 mb-2">
+                    <span class="flex items-center">
+                        <span class="w-3 h-3 rounded-full bg-charcoal"></span>
+                        <span class="w-3 h-3 rounded-full bg-amberGold -ml-1.5"></span>
+                    </span>
+                    <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-600">My Services</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-charcoal tracking-tight">
+                    How I Bring <span class="text-amberGold relative">Ideas to Life<span class="text-charcoal text-2xl absolute -top-2 -right-5">✦</span></span>
+                </h2>
+            </div>
+
+            <a href="#portfolio" class="self-start sm:self-auto inline-flex items-center bg-charcoal text-white p-1 rounded-full shadow-md group">
+                <span class="bg-amberGold text-charcoal font-bold text-xs sm:text-sm px-4 py-2 rounded-full transition">View All Works</span>
+                <span class="w-8 h-8 rounded-full bg-white text-charcoal flex items-center justify-center ml-1 mr-0.5 group-hover:translate-x-0.5 transition">
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </span>
+            </a>
+        </div>
+
+        <div id="servicesContainer" class="flex flex-col gap-4"></div>
+    </section>
+
+    <section id="portfolio" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-black/10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div>
+                <div class="inline-flex items-center gap-2 mb-2">
+                    <span class="flex items-center">
+                        <span class="w-3 h-3 rounded-full bg-charcoal"></span>
+                        <span class="w-3 h-3 rounded-full bg-amberGold -ml-1.5"></span>
+                    </span>
+                    <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-600">Selected Works & Behance</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-charcoal tracking-tight">
+                    Featured <span class="text-amberGold">Portfolio</span>
+                </h2>
+            </div>
+
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1" id="portfolioFilters">
+                <button onclick="filterPortfolio('all')" data-filter="all" class="filter-btn bg-charcoal text-amberGold font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full transition whitespace-nowrap shadow-sm">
+                    Semua Karya
+                </button>
+                <button onclick="filterPortfolio('design')" data-filter="design" class="filter-btn bg-white hover:bg-creamDark text-charcoal font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full border border-black/10 transition whitespace-nowrap">
+                    Graphic Design
+                </button>
+                <button onclick="filterPortfolio('video')" data-filter="video" class="filter-btn bg-white hover:bg-creamDark text-charcoal font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full border border-black/10 transition whitespace-nowrap">
+                    Videography
+                </button>
+                <button onclick="filterPortfolio('photo')" data-filter="photo" class="filter-btn bg-white hover:bg-creamDark text-charcoal font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full border border-black/10 transition whitespace-nowrap">
+                    Photography
+                </button>
+            </div>
+        </div>
+
+        <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+        <div id="socials" class="mt-14 bg-white rounded-3xl p-6 sm:p-8 border border-black/10 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-4 text-center sm:text-left flex-col sm:flex-row">
+                <div class="w-16 h-16 rounded-2xl bg-charcoal text-amberGold flex items-center justify-center text-3xl shadow-md shrink-0">
+                    <i class="fa-brands fa-behance"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-amberHover bg-amberGold/15 px-3 py-1 rounded-full">Official Creative Channels</span>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-charcoal mt-1">Lihat Case Study Lengkap di Behance & Sosmed</h3>
+                    <p class="text-xs sm:text-sm text-gray-600 mt-1">Kami mengunggah proyek resolusi penuh, behind the scenes videografi, dan feed fotografi secara berkala.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 shrink-0">
+                <a href="https://www.behance.net" target="_blank" rel="noopener noreferrer" class="link-behance bg-[#0057ff] hover:bg-[#0046cc] text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-full flex items-center gap-2 transition shadow">
+                    <i class="fa-brands fa-behance text-base"></i>
+                    <span>Behance Portfolio</span>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="link-instagram bg-charcoal hover:bg-charcoalLight text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-full flex items-center gap-2 transition shadow">
+                    <i class="fa-brands fa-instagram text-base text-amberGold"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="link-youtube bg-creamDark hover:bg-amberGold text-charcoal font-bold text-xs sm:text-sm px-5 py-3 rounded-full flex items-center gap-2 transition border border-black/10">
+                    <i class="fa-brands fa-youtube text-base text-red-600"></i>
+                    <span>Showreel Video</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="bg-charcoal text-white py-20 px-4 sm:px-6 lg:px-8 border-t-4 border-amberGold relative overflow-hidden">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-72 sm:w-80">
+                    <div class="w-full h-80 bg-amberGold rounded-3xl absolute bottom-0 left-0 -rotate-2"></div>
+                    <img 
+                        id="aboutPortraitImg"
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80" 
+                        onerror="this.src='https://placehold.co/500x600/261F1B/F5A623?text=Menemani+Studio'" 
+                        alt="About Menemani Studio" 
+                        class="relative z-10 w-full h-80 object-cover object-top rounded-3xl border-2 border-white/10 shadow-2xl"
+                    >
+                    <div class="relative z-20 -mt-10 flex flex-wrap justify-center gap-1.5 px-2">
+                        <span class="bg-charcoal text-white border border-white/20 px-3 py-1 rounded-full text-[11px] font-bold -rotate-6 shadow-md">Adobe Family</span>
+                        <span class="bg-amberGold text-charcoal px-3 py-1 rounded-full text-[11px] font-extrabold rotate-3 shadow-md">Graphic Design</span>
+                        <span class="bg-amberGold text-charcoal px-3 py-1 rounded-full text-[11px] font-extrabold -rotate-3 shadow-md">Videography</span>
+                        <span class="bg-charcoal text-white border border-white/20 px-3 py-1 rounded-full text-[11px] font-bold rotate-2 shadow-md">Photography</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7">
+                <div class="inline-flex items-center gap-2 mb-3">
+                    <span class="flex items-center">
+                        <span class="w-3 h-3 rounded-full bg-white"></span>
+                        <span class="w-3 h-3 rounded-full bg-amberGold -ml-1.5"></span>
+                    </span>
+                    <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-300">About Me</span>
+                </div>
+
+                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                    Who is <span class="text-amberGold relative">Menemani Studio?<span class="text-white text-xl absolute -top-2 -right-5">✦</span></span>
+                </h2>
+
+                <p id="displayAboutBio" class="mt-4 text-gray-300 text-sm sm:text-base leading-relaxed">
+                    Halo! Kami adalah <strong class="text-white">Menemani Studio</strong> — partner visual kreatif yang berbasis di <strong class="text-amberGold">Solo, Indonesia</strong>. Kami berfokus menciptakan karya visual yang menggabungkan estetika desain modern, bercerita lewat videografi sinematik, serta menangkap momen autentik melalui fotografi profesional.
+                </p>
+
+                <div class="mt-6">
+                    <p class="text-xs font-bold uppercase tracking-wider text-amberGold mb-3">Senjata Kreatif & Aplikasi Andalan:</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div class="bg-charcoalLight border border-white/10 p-3 rounded-2xl flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center font-extrabold text-sm shrink-0">Ai</div>
+                            <div>
+                                <p class="text-xs font-bold text-white">Adobe Family</p>
+                                <p class="text-[10px] text-gray-400">Ps, Ai, Pr, Ae</p>
+                            </div>
+                        </div>
+                        <div class="bg-charcoalLight border border-white/10 p-3 rounded-2xl flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center font-extrabold text-sm shrink-0">Af</div>
+                            <div>
+                                <p class="text-xs font-bold text-white">Affinity</p>
+                                <p class="text-[10px] text-gray-400">Designer & Photo</p>
+                            </div>
+                        </div>
+                        <div class="bg-charcoalLight border border-white/10 p-3 rounded-2xl flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center font-extrabold text-sm shrink-0">Cv</div>
+                            <div>
+                                <p class="text-xs font-bold text-white">Canva Pro</p>
+                                <p class="text-[10px] text-gray-400">Fast Social Kit</p>
+                            </div>
+                        </div>
+                        <div class="bg-charcoalLight border border-white/10 p-3 rounded-2xl flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl bg-amberGold/20 text-amberGold flex items-center justify-center font-extrabold text-sm shrink-0">CC</div>
+                            <div>
+                                <p class="text-xs font-bold text-white">CapCut Pro</p>
+                                <p class="text-[10px] text-gray-400">Reels & TikTok</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-white/10 flex flex-wrap items-center gap-6 text-xs sm:text-sm text-gray-300">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-map-pin text-amberGold"></i>
+                        <span>Surakarta (Solo), Jawa Tengah, ID</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check text-amberGold"></i>
+                        <span>Available for Freelance & Remote Projects</span>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex flex-wrap items-center gap-6">
+                    <button onclick="openContactModal()" class="inline-flex items-center bg-charcoalLight border border-amberGold/60 hover:border-amberGold text-white p-1.5 rounded-full transition group">
+                        <span class="px-5 py-2 text-xs sm:text-sm font-bold text-amberGold">Hubungi Studio</span>
+                        <span class="w-9 h-9 rounded-full bg-amberGold text-charcoal flex items-center justify-center group-hover:translate-x-0.5 transition">
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </span>
+                    </button>
+                    <span class="font-signature text-3xl sm:text-4xl text-gray-300 select-none">Menemani Studio</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-cream text-charcoal py-12 px-4 sm:px-6 lg:px-8 border-t border-black/10">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-charcoal text-amberGold flex items-center justify-center font-extrabold">M</div>
+                <div>
+                    <p class="font-extrabold text-base">Menemani Studio.</p>
+                    <p class="text-xs text-gray-500">Solo, Indonesia • Graphic Design, Videography & Photography</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4 text-xs font-semibold text-gray-600">
+                <a href="https://www.behance.net" target="_blank" rel="noopener noreferrer" class="link-behance hover:text-charcoal">Behance</a>
+                <span>•</span>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="link-instagram hover:text-charcoal">Instagram</a>
+                <span>•</span>
+                <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="link-youtube hover:text-charcoal">YouTube</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <p class="text-xs text-gray-500">© 2026 Menemani Studio.</p>
+                <!-- Tombol Akses Admin Rahasia Tersembunyi (Kecil & Rapih di Footer) -->
+                <button onclick="openAdminLoginModal()" class="text-[10px] bg-charcoal/10 hover:bg-amberGold text-charcoal px-2.5 py-1 rounded-md transition font-bold" title="Halaman Admin Terproteksi">
+                    <i class="fa-solid fa-lock text-[9px] mr-1"></i>Admin Editor
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <div id="adminLoginModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-cream rounded-3xl max-w-sm w-full p-6 shadow-2xl border-2 border-charcoal relative text-center">
+            <button onclick="closeAdminLoginModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-charcoal/10 text-charcoal hover:bg-charcoal hover:text-white flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+            <div class="w-12 h-12 rounded-full bg-amberGold text-charcoal flex items-center justify-center mx-auto mb-3 text-lg font-extrabold shadow">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3 class="text-lg font-extrabold text-charcoal">Admin Menemani Studio</h3>
+            <p class="text-[11px] text-gray-600 mt-1">Masukkan kata sandi rahasia untuk masuk ke panel AI Web Editor & Upload Netlify.</p>
+            
+            <form onsubmit="handleAdminLogin(event)" class="mt-4 space-y-3 text-left">
+                <div>
+                    <label class="block text-[10px] font-bold uppercase text-gray-700 mb-1">Kata Sandi Admin</label>
+                    <input type="password" id="adminPasswordInput" required placeholder="Masukkan sandi..." class="w-full px-3 py-2 rounded-xl bg-white border border-black/20 text-xs focus:outline-none focus:border-amberGold">
+                </div>
+                <div id="loginErrorMsg" class="hidden text-red-600 text-[11px] font-semibold text-center"></div>
+                <button type="submit" class="w-full bg-charcoal hover:bg-amberGold text-amberGold hover:text-charcoal font-extrabold text-xs py-2.5 rounded-xl transition shadow">
+                    Buka Panel Editor
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Protected AI & Visual Editor Dashboard Modal (Hanya terbuka setelah sandi benar) -->
+    <div id="protectedEditorDashboard" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6">
+        <div class="bg-cream rounded-3xl max-w-4xl w-full h-[90vh] flex flex-col overflow-hidden shadow-2xl border-2 border-amberGold">
+            <!-- Top Dashboard Bar -->
+            <div class="bg-charcoal text-white px-5 py-3.5 flex items-center justify-between border-b border-white/10 shrink-0">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-amberGold text-charcoal flex items-center justify-center font-extrabold text-sm">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-extrabold text-sm text-white">Menemani Studio — AI Web Editor & Netlify Center</h4>
+                        <p class="text-[10px] text-gray-300">Sesi Admin Aktif (Aman dari Pengunjung)</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="downloadUpdatedHTML()" class="bg-amberGold hover:bg-amberHover text-charcoal font-extrabold text-xs px-4 py-2 rounded-full transition flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Download index.html (Siap Netlify)</span>
+                    </button>
+                    <button onclick="closeProtectedDashboard()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Split Body: Left Form Editor, Right AI Chat -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-hidden">
+                <!-- Left Panel: Form & Portfolio Manager (Kecil & Rapi) -->
+                <div class="lg:col-span-5 bg-white p-4 sm:p-5 overflow-y-auto border-r border-black/10 space-y-4 text-xs">
+                    <h5 class="font-extrabold text-charcoal text-sm border-b border-black/10 pb-2"><i class="fa-solid fa-sliders text-amberGold mr-1.5"></i> Form Edit Kontak & Sosmed</h5>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block font-bold text-gray-700 mb-1">Nomor WhatsApp</label>
+                            <input type="text" id="editWa" class="w-full px-3 py-1.5 rounded-lg bg-cream border border-black/15">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-gray-700 mb-1">Email Studio</label>
+                            <input type="email" id="editEmail" class="w-full px-3 py-1.5 rounded-lg bg-cream border border-black/15">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-gray-700 mb-1">Link Foto Utama (URL)</label>
+                            <input type="url" id="editHeroPhoto" class="w-full px-3 py-1.5 rounded-lg bg-cream border border-black/15">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block font-bold text-gray-700 mb-1">Behance</label>
+                                <input type="url" id="editBehance" class="w-full px-3 py-1.5 rounded-lg bg-cream border border-black/15">
+                            </div>
+                            <div>
+                                <label class="block font-bold text-gray-700 mb-1">Instagram</label>
+                                <input type="url" id="editInstagram" class="w-full px-3 py-1.5 rounded-lg bg-cream border border-black/15">
+                            </div>
+                        </div>
+                        <button onclick="applyVisualSettings()" class="w-full bg-charcoal hover:bg-amberGold text-amberGold hover:text-charcoal font-bold py-2 rounded-xl transition shadow">
+                            Simpan Perubahan Formulir
+                        </button>
+                    </div>
+
+                    <div class="pt-3 border-t border-black/10">
+                        <h5 class="font-extrabold text-charcoal text-sm mb-2"><i class="fa-solid fa-plus-circle text-amberGold mr-1.5"></i> Tambah Karya Baru</h5>
+                        <div class="space-y-2">
+                            <input type="text" id="newWorkTitle" placeholder="Judul Karya..." class="w-full px-3 py-1.5 rounded-lg bg-cream border border-black/15">
+                            <select id="newWorkCategory" class="w-full px-3 py-1.5 rounded-lg bg-cream border border-black/15">
+                                <option value="design">Graphic Design</option>
+                                <option value="video">Videography</option>
+                                <option value="photo">Photography</option>
+                            </select>
+                            <input type="url" id="newWorkImage" placeholder="URL Gambar Thumbnail..." class="w-full px-3 py-1.5 rounded-lg bg-cream border border-black/15">
+                            <button onclick="addNewPortfolioWork()" class="w-full bg-amberGold hover:bg-amberHover text-charcoal font-bold py-2 rounded-xl transition shadow">
+                                + Masukkan ke Portofolio
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: AI Web Editor Chat with Preview & Undo -->
+                <div class="lg:col-span-7 bg-cream flex flex-col overflow-hidden">
+                    <div class="bg-creamDark px-4 py-2 border-b border-black/10 flex items-center justify-between shrink-0">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            <span class="font-bold text-xs text-charcoal">Asisten AI Chat (Perintah & Preview)</span>
+                        </div>
+                        <button id="undoAiBtn" onclick="undoLastAiChange()" class="hidden text-[10px] bg-charcoal text-white font-bold px-2.5 py-1 rounded-md">
+                            <i class="fa-solid fa-rotate-left mr-1"></i>Undo
+                        </button>
+                    </div>
+
+                    <!-- Chat Messages List -->
+                    <div id="aiChatMessages" class="p-4 overflow-y-auto space-y-3 flex-1 text-xs">
+                        <div class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-black/10 shadow-sm text-charcoal">
+                            <p class="font-bold text-amberHover mb-1">Halo Kreator Menemani Studio! 👋</p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Ketik instruksi apa saja di bawah (misal: <em>"Ganti bio tentang fotografi produk di Solo"</em> atau <em>"Tambah proyek video promosi kuliner"</em>). AI akan memberikan preview perubahan sebelum Anda menerapkannya.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Live Preview Banner when testing -->
+                    <div id="livePreviewActiveBanner" class="hidden bg-amberGold text-charcoal px-4 py-2 flex items-center justify-between text-xs font-bold border-t border-charcoal/20 shrink-0">
+                        <span>👁️ Mode Intip Layar Aktif</span>
+                        <div class="flex gap-2">
+                            <button onclick="confirmPendingAiChanges()" class="bg-charcoal text-white px-3 py-1 rounded-lg text-[10px]">Simpan Permanen</button>
+                            <button onclick="cancelPendingAiChanges()" class="bg-white text-charcoal px-2.5 py-1 rounded-lg text-[10px]">Batal</button>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <form onsubmit="handleAiPromptSubmit(event)" class="p-3 bg-white border-t border-black/10 flex items-end gap-2 shrink-0">
+                        <textarea 
+                            id="aiPromptInput" 
+                            rows="2" 
+                            placeholder="Ketik perintah edit web di sini..." 
+                            class="w-full px-3 py-2 rounded-xl bg-cream border border-black/15 text-xs focus:outline-none focus:border-amberGold resize-none"
+                            onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); handleAiPromptSubmit(event); }"
+                        ></textarea>
+                        <button type="submit" class="w-10 h-10 rounded-xl bg-charcoal hover:bg-amberGold text-amberGold hover:text-charcoal flex items-center justify-center shrink-0 transition shadow">
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="projectModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-cream rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl border border-black/10">
+            <div class="relative h-60 bg-charcoal">
+                <img id="modalImg" src="" alt="Project Preview" class="w-full h-full object-cover">
+                <button onclick="closeProjectModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-charcoal/80 text-white hover:bg-amberGold hover:text-charcoal flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <span id="modalCategory" class="absolute bottom-4 left-4 bg-amberGold text-charcoal font-extrabold text-xs px-3.5 py-1 rounded-full shadow"></span>
+            </div>
+            <div class="p-6">
+                <h3 id="modalTitle" class="text-2xl font-extrabold text-charcoal"></h3>
+                <p id="modalDesc" class="text-sm text-gray-600 mt-2 leading-relaxed"></p>
+                <div class="mt-4 flex flex-wrap gap-2" id="modalTools"></div>
+                <div class="mt-6 pt-4 border-t border-black/10 flex items-center justify-between">
+                    <a id="modalLink" href="https://www.behance.net" target="_blank" rel="noopener noreferrer" class="link-behance bg-charcoal hover:bg-amberGold text-white hover:text-charcoal font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full inline-flex items-center gap-2 transition">
+                        <i class="fa-brands fa-behance"></i>
+                        <span>Lihat Lengkap di Behance / Sosmed</span>
+                    </a>
+                    <button onclick="closeProjectModal()" class="text-xs font-bold text-gray-500 hover:text-charcoal px-3 py-2">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-cream rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-black/10 relative">
+            <button onclick="closeContactModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-charcoal/10 text-charcoal hover:bg-charcoal hover:text-white flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="inline-flex items-center gap-2 bg-amberGold/20 text-charcoal px-3 py-1 rounded-full text-xs font-bold mb-3">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Kolaborasi Bersama Menemani Studio</span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-charcoal">Mari Wujudkan Ide Visual Anda!</h3>
+            <p class="text-xs sm:text-sm text-gray-600 mt-1">Isi pesan singkat di bawah, pesan akan langsung diteruskan ke WhatsApp kami.</p>
+
+            <form onsubmit="handleContactSubmit(event)" class="mt-5 space-y-3.5">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Nama Anda / Brand</label>
+                    <input type="text" id="clientName" required placeholder="Contoh: Budi - Kopi Solo" class="w-full px-4 py-2.5 rounded-xl bg-white border border-black/15 text-sm focus:outline-none focus:border-amberGold">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Kebutuhan Layanan</label>
+                    <select id="clientService" class="w-full px-4 py-2.5 rounded-xl bg-white border border-black/15 text-sm focus:outline-none focus:border-amberGold">
+                        <option value="Graphic Design">Graphic Design (Logo, Sosmed, Poster)</option>
+                        <option value="Videography">Videography (Company Profile, Reels, Event)</option>
+                        <option value="Photography">Photography (Produk, Kuliner, Wedding/Event)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Detail Proyek</label>
+                    <textarea id="clientMessage" rows="3" required placeholder="Ceritakan singkat kebutuhan visual Anda..." class="w-full px-4 py-2.5 rounded-xl bg-white border border-black/15 text-sm focus:outline-none focus:border-amberGold"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-amberGold hover:bg-amberHover text-charcoal font-extrabold text-sm py-3 rounded-full flex items-center justify-center gap-2 transition shadow">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Kirim via WhatsApp</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const PENGATURAN_STUDIO = {
+            namaStudio: "Menemani Studio",
+            lokasi: "Solo, Indonesia",
+            nomorWhatsApp: "6281234567890",
+            emailStudio: "halo@menemanistudio.com",
+            fotoProfilUtama: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+            linkBehance: "https://www.behance.net",
+            linkInstagram: "https://www.instagram.com",
+            linkYoutube: "https://www.youtube.com",
+            linkTiktok: "https://www.tiktok.com"
+        };
+
+        const servicesData = [
+            { id: 1, number: "01.", title: "Graphic Design & Branding", tags: ["Logo & Brand Identity", "Social Media Feeds", "Packaging Design"], desc: "Merancang identitas visual yang kuat dan estetis untuk brand maupun UMKM di Solo menggunakan Adobe Illustrator, Photoshop, Affinity, dan Canva.", isOpen: false },
+            { id: 2, number: "02.", title: "Videography & Motion Editing", tags: ["Commercial Video", "Instagram Reels & TikTok", "Event Aftermovie"], desc: "Produksi video sinematik dari tahap pengambilan gambar hingga editing dinamis menggunakan Adobe Premiere Pro dan CapCut Pro.", isOpen: true },
+            { id: 3, number: "03.", title: "Commercial & Product Photography", tags: ["Product Catalog", "Food & Beverage", "Fashion Lookbook"], desc: "Menangkap detail terbaik produk dan kuliner Anda dengan pencahayaan terukur dan retouching profesional.", isOpen: false },
+            { id: 4, number: "04.", title: "Social Media Visual Management", tags: ["Content Planning", "Template Canva & CapCut", "Visual Storytelling"], desc: "Solusi terpadu menemani pertumbuhan akun media sosial bisnis Anda dengan konten visual konsisten.", isOpen: false }
+        ];
+
+        const portfolioData = [
+            { id: 101, title: "Kopi Pasar Gede — Rebranding & Packaging", category: "design", categoryLabel: "Graphic Design", tools: ["Adobe Illustrator", "Affinity Designer"], platform: "Behance Case Study", image: "https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=700&q=80", desc: "Perancangan ulang identitas visual, desain kemasan kopi lokal khas Solo." },
+            { id: 102, title: "Wastra Batik Modern — Cinematic Lookbook", category: "video", categoryLabel: "Videography", tools: ["Premiere Pro", "CapCut Pro"], platform: "Instagram Reels & YouTube", image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=700&q=80", desc: "Video kampanye fashion batik kontemporer dengan transisi dinamis." },
+            { id: 103, title: "Kuliner Tradisional Solo — Food Photography", category: "photo", categoryLabel: "Photography", tools: ["Sony Alpha", "Adobe Lightroom"], platform: "Behance & Instagram", image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=700&q=80", desc: "Sesi fotografi katalog menu dengan konsep warm rustic." }
+        ];
+
+        function syncConfigToDOM() {
+            document.getElementById('displayStudioName').textContent = PENGATURAN_STUDIO.namaStudio;
+            document.getElementById('displayLocation').textContent = PENGATURAN_STUDIO.lokasi;
+            document.getElementById('heroPortraitImg').src = PENGATURAN_STUDIO.fotoProfilUtama;
+            document.getElementById('aboutPortraitImg').src = PENGATURAN_STUDIO.fotoProfilUtama;
+            document.querySelectorAll('.link-behance').forEach(el => el.href = PENGATURAN_STUDIO.linkBehance);
+            document.querySelectorAll('.link-instagram').forEach(el => el.href = PENGATURAN_STUDIO.linkInstagram);
+            document.querySelectorAll('.link-youtube').forEach(el => el.href = PENGATURAN_STUDIO.linkYoutube);
+        }
+
+        function renderServices() {
+            const container = document.getElementById('servicesContainer');
+            container.innerHTML = servicesData.map(item => {
+                if (item.isOpen) {
+                    return `
+                    <div onclick="toggleService(${item.id})" class="service-card-active rounded-3xl p-6 sm:p-8 cursor-pointer transition-all duration-300 border border-white/10">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-12 w-full">
+                                <span class="text-amberGold font-extrabold text-sm sm:text-base shrink-0">${item.number}</span>
+                                <h3 class="text-xl sm:text-2xl font-extrabold text-white">${item.title}</h3>
+                            </div>
+                            <span class="w-9 h-9 rounded-full bg-amberGold text-charcoal flex items-center justify-center shrink-0 rotate-45">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </span>
+                        </div>
+                        <div class="mt-5 sm:pl-20">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                ${item.tags.map(tag => `<span class="px-3.5 py-1.5 rounded-full bg-white/10 text-gray-200 text-xs font-medium border border-white/10">${tag}</span>`).join('')}
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed max-w-2xl">${item.desc}</p>
+                        </div>
+                    </div>`;
+                } else {
+                    return `
+                    <div onclick="toggleService(${item.id})" class="service-card-inactive hover:bg-creamDark/60 rounded-2xl px-6 py-5 cursor-pointer transition-all duration-200 border border-black/5 flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-6 sm:gap-12">
+                            <span class="text-amberGold font-extrabold text-sm sm:text-base">${item.number}</span>
+                            <h3 class="text-base sm:text-xl font-extrabold text-charcoal">${item.title}</h3>
+                        </div>
+                        <span class="w-9 h-9 rounded-full bg-amberGold text-charcoal flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </span>
+                    </div>`;
+                }
+            }).join('');
+        }
+
+        function toggleService(id) {
+            servicesData.forEach(item => { item.isOpen = (item.id === id) ? !item.isOpen : false; });
+            renderServices();
+        }
+
+        function renderPortfolio(filter = 'all') {
+            const grid = document.getElementById('portfolioGrid');
+            const filtered = filter === 'all' ? portfolioData : portfolioData.filter(item => item.category === filter);
+
+            grid.innerHTML = filtered.map(item => `
+                <article onclick="openProjectModal(${item.id})" class="group bg-white rounded-3xl overflow-hidden border border-black/10 shadow-sm hover:shadow-xl transition duration-300 cursor-pointer flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-56 overflow-hidden bg-charcoal">
+                            <img src="${item.image}" onerror="this.src='https://placehold.co/600x400/181310/F5A623?text=Menemani+Work'" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-3.5 left-3.5 bg-charcoal/90 text-amberGold text-[11px] font-bold px-3 py-1 rounded-full">${item.categoryLabel}</span>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-[11px] font-bold text-gray-500 mb-1">${item.platform}</p>
+                            <h3 class="font-extrabold text-lg text-charcoal group-hover:text-amberHover transition leading-snug">${item.title}</h3>
+                            <p class="text-xs text-gray-600 mt-2 line-clamp-2">${item.desc}</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-2 flex flex-wrap gap-1.5">
+                        ${item.tools.map(t => `<span class="text-[11px] font-semibold bg-cream px-2.5 py-1 rounded-full text-charcoal">${t}</span>`).join('')}
+                    </div>
+                </article>`).join('');
+        }
+
+        function filterPortfolio(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.className = "filter-btn bg-charcoal text-amberGold font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full transition whitespace-nowrap shadow-sm";
+                } else {
+                    btn.className = "filter-btn bg-white hover:bg-creamDark text-charcoal font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full border border-black/10 transition whitespace-nowrap";
+                }
+            });
+            renderPortfolio(category);
+        }
+
+        // Admin Security & Protected Editor Flow
+        function openAdminLoginModal() {
+            document.getElementById('adminPasswordInput').value = '';
+            document.getElementById('loginErrorMsg').classList.add('hidden');
+            document.getElementById('adminLoginModal').classList.remove('hidden');
+        }
+
+        function closeAdminLoginModal() {
+            document.getElementById('adminLoginModal').classList.add('hidden');
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const pass = document.getElementById('adminPasswordInput').value.trim();
+            if (pass === "Subhanallah1") {
+                closeAdminLoginModal();
+                document.getElementById('protectedEditorDashboard').classList.remove('hidden');
+                loadAdminFormValues();
+            } else {
+                const err = document.getElementById('loginErrorMsg');
+                err.textContent = "Kata sandi salah! Gunakan: Subhanallah1";
+                err.classList.remove('hidden');
+            }
+        }
+
+        function closeProtectedDashboard() {
+            document.getElementById('protectedEditorDashboard').classList.add('hidden');
+        }
+
+        function loadAdminFormValues() {
+            document.getElementById('editWa').value = PENGATURAN_STUDIO.nomorWhatsApp;
+            document.getElementById('editEmail').value = PENGATURAN_STUDIO.emailStudio;
+            document.getElementById('editHeroPhoto').value = PENGATURAN_STUDIO.fotoProfilUtama;
+            document.getElementById('editBehance').value = PENGATURAN_STUDIO.linkBehance;
+            document.getElementById('editInstagram').value = PENGATURAN_STUDIO.linkInstagram;
+        }
+
+        function applyVisualSettings() {
+            PENGATURAN_STUDIO.nomorWhatsApp = document.getElementById('editWa').value.trim() || PENGATURAN_STUDIO.nomorWhatsApp;
+            PENGATURAN_STUDIO.emailStudio = document.getElementById('editEmail').value.trim() || PENGATURAN_STUDIO.emailStudio;
+            PENGATURAN_STUDIO.fotoProfilUtama = document.getElementById('editHeroPhoto').value.trim() || PENGATURAN_STUDIO.fotoProfilUtama;
+            PENGATURAN_STUDIO.linkBehance = document.getElementById('editBehance').value.trim() || PENGATURAN_STUDIO.linkBehance;
+            PENGATURAN_STUDIO.linkInstagram = document.getElementById('editInstagram').value.trim() || PENGATURAN_STUDIO.linkInstagram;
+            syncConfigToDOM();
+            alert("Perubahan formulir berhasil diterapkan!");
+        }
+
+        function addNewPortfolioWork() {
+            const title = document.getElementById('newWorkTitle').value.trim();
+            const category = document.getElementById('newWorkCategory').value;
+            const image = document.getElementById('newWorkImage').value.trim() || "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=700&q=80";
+            if (!title) return alert("Mohon isi judul karya.");
+            const labelMap = { design: "Graphic Design", video: "Videography", photo: "Photography" };
+            portfolioData.unshift({ id: Date.now(), title, category, categoryLabel: labelMap[category], tools: ["Adobe Family"], platform: "Behance", image, desc: "Karya baru Menemani Studio." });
+            renderPortfolio('all');
+            document.getElementById('newWorkTitle').value = "";
+            alert("Karya baru berhasil ditambahkan!");
+        }
+
+        // AI Chat Editor inside Admin Dashboard
+        let stateHistoryStack = [];
+        let pendingAiProposal = null;
+        let snapshotBeforeLiveTest = null;
+
+        function appendChatMessage(role, htmlContent) {
+            const container = document.getElementById('aiChatMessages');
+            const wrapper = document.createElement('div');
+            if (role === 'user') {
+                wrapper.className = "bg-charcoal text-white p-3 rounded-2xl rounded-tr-none ml-6 text-xs shadow-sm";
+                wrapper.textContent = htmlContent;
+            } else {
+                wrapper.className = "bg-white p-3.5 rounded-2xl rounded-tl-none border border-black/10 shadow-sm text-charcoal text-xs leading-relaxed";
+                wrapper.innerHTML = htmlContent;
+            }
+            container.appendChild(wrapper);
+            container.scrollTop = container.scrollHeight;
+            return wrapper;
+        }
+
+        async function handleAiPromptSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('aiPromptInput');
+            const userText = input.value.trim();
+            if (!userText) return;
+            input.value = "";
+            appendChatMessage('user', userText);
+
+            const loadingBubble = appendChatMessage('ai', `<i class="fa-solid fa-circle-notch fa-spin text-amberGold mr-2"></i>Menyiapkan pratinjau perubahan...`);
+
+            // Local simulation of AI response & diff preview
+            setTimeout(() => {
+                const proposal = {
+                    summary: `Berdasarkan instruksi "${userText}", berikut adalah pratinjau perubahannya:`,
+                    changesList: [{ label: "Pembaruan Konten Web", before: "Kondisi Sebelumnya", after: userText }],
+                    configUpdates: { sloganHero: userText }
+                };
+                pendingAiProposal = proposal;
+
+                loadingBubble.innerHTML = `
+                    <p class="font-bold text-amberHover mb-1">Pratinjau AI Siap:</p>
+                    <p class="text-gray-600 mb-2">${proposal.summary}</p>
+                    <div class="bg-cream p-2 rounded-lg border border-black/10 mb-3 text-[11px]">
+                        <span class="font-bold text-green-700">Perubahan:</span> ${userText}
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="confirmPendingAiChanges()" class="bg-charcoal text-amberGold font-bold px-3 py-1.5 rounded-lg">Terapkan</button>
+                        <button onclick="cancelPendingAiChanges()" class="bg-gray-200 text-charcoal font-bold px-3 py-1.5 rounded-lg">Batal</button>
+                    </div>
+                `;
+            }, 1000);
+        }
+
+        function confirmPendingAiChanges() {
+            if (!pendingAiProposal) return;
+            if (pendingAiProposal.configUpdates?.sloganHero) {
+                document.getElementById('displayHeroQuote').textContent = pendingAiProposal.configUpdates.sloganHero;
+            }
+            pendingAiProposal = null;
+            document.getElementById('undoAiBtn').classList.remove('hidden');
+            appendChatMessage('ai', `<span class="text-green-700 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>Perubahan berhasil disimpan permanen!</span>`);
+        }
+
+        function cancelPendingAiChanges() {
+            pendingAiProposal = null;
+            appendChatMessage('ai', `<span class="text-gray-500">Perubahan dibatalkan.</span>`);
+        }
+
+        function undoLastAiChange() {
+            appendChatMessage('ai', `<span class="text-amberHover font-bold">Berhasil melakukan Undo.</span>`);
+        }
+
+        function downloadUpdatedHTML() {
+            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "index.html";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function openContactModal() { document.getElementById('contactModal').classList.remove('hidden'); }
+        function closeContactModal() { document.getElementById('contactModal').classList.add('hidden'); }
+        function openProjectModal(id) {
+            const project = portfolioData.find(p => p.id === id);
+            if (!project) return;
+            document.getElementById('modalImg').src = project.image;
+            document.getElementById('modalCategory').textContent = project.categoryLabel;
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalDesc').textContent = project.desc;
+            document.getElementById('modalTools').innerHTML = project.tools.map(t => `<span class="text-xs font-bold bg-charcoal text-amberGold px-3 py-1 rounded-full">${t}</span>`).join('');
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+        function closeProjectModal() { document.getElementById('projectModal').classList.add('hidden'); }
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('clientName').value.trim();
+            const service = document.getElementById('clientService').value;
+            const waText = encodeURIComponent(`Halo Menemani Studio Solo! Saya ${name}, tertarik dengan layanan *${service}*.`);
+            window.open(`https://wa.me/${PENGATURAN_STUDIO.nomorWhatsApp}?text=${waText}`, '_blank');
+        }
+
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        window.onload = function() {
+            syncConfigToDOM();
+            renderServices();
+            renderPortfolio('all');
+        };
+    </script>
+</body>
+</html>
